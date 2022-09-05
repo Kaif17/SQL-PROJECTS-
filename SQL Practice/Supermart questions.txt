@@ -1,0 +1,18 @@
+Q1 want city = ooty and yellore, perambalur and their sales?
+Q2 find out all customer_name letter sart with H and their sales?
+Q3 who the person whose sales is max and min ?
+Q4 Change column name from customer_name to customer_first_name ?
+Q5 Change the name of state as Kerela ?
+Q6 Calculate sum(profit), Avg(sales) from the table? 
+Q7 Use upper case for category and lower case for city?
+Q8 Get the 2nd higest sales ?
+Q9 Get the top 3 city sales is maximum from the data? 
+Q10 Which region has max profit and min profit?
+Q11 Calculate the percentage of discount ?
+Q12 Get the maximum profit gained by products in which city?
+Q13 Get the names of that customer whose sales is between 1500 to 2000 ?
+Q14 Get the Total sales of region east ?
+Q15 Which are the top 5 city  whose profit is least ?
+Q16 get the second order profit which is lowest ?
+Q17 Get the 4th maximum Sales from the data ?
+Q18 Find the 6th maximum sales from the given data?

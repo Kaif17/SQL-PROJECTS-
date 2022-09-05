@@ -1,0 +1,227 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create mydata;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mydata' at line 1
+mysql> create database mydata;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use mydata;
+Database changed
+mysql> create table students(
+    -> sid integer, sname char(30) , age integer , course char(30));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into students values (1, 'mary', 24, Mysql)
+    -> (2, 'manaw', 27, Analytics)
+    ->
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(2, 'manaw', 27, Analytics)' at line 2
+mysql> insert into students values (1, 'mary', 24, 'Mysql');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into students values (2, 'john', 26, 'Analytics');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values (3, 'kapil', 30, 'Mysql');
+ERROR 1146 (42S02): Table 'mydata.student' doesn't exist
+mysql> select * from stuudents;
+ERROR 1146 (42S02): Table 'mydata.stuudents' doesn't exist
+mysql> select * from students;
++------+-------+------+-----------+
+| sid  | sname | age  | course    |
++------+-------+------+-----------+
+|    1 | mary  |   24 | Mysql     |
+|    2 | john  |   26 | Analytics |
++------+-------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table students add column marks integer;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++------+-------+------+-----------+-------+
+| sid  | sname | age  | course    | marks |
++------+-------+------+-----------+-------+
+|    1 | mary  |   24 | Mysql     |  NULL |
+|    2 | john  |   26 | Analytics |  NULL |
++------+-------+------+-----------+-------+
+2 rows in set (0.03 sec)
+
+mysql> alter table students drop column age;
+Query OK, 0 rows affected (0.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++------+-------+-----------+-------+
+| sid  | sname | course    | marks |
++------+-------+-----------+-------+
+|    1 | mary  | Mysql     |  NULL |
+|    2 | john  | Analytics |  NULL |
++------+-------+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table students change column sid sid=id integer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=id integer' at line 1
+mysql> alter table students change column sid sid-id integer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-id integer' at line 1
+mysql>  alter table students change column sid sid_id integer;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     |  NULL |
+|      2 | john  | Analytics |  NULL |
++--------+-------+-----------+-------+
+2 rows in set (0.03 sec)
+
+mysql> alter table students modify column sname varchar (40);
+Query OK, 2 rows affected (0.26 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql>  select * from students;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     |  NULL |
+|      2 | john  | Analytics |  NULL |
++--------+-------+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table students rename myclass;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from myclass;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     |  NULL |
+|      2 | john  | Analytics |  NULL |
++--------+-------+-----------+-------+
+2 rows in set (0.04 sec)
+
+mysql> insert into myclass values(3, 'kate', Mysql, 65);
+ERROR 1054 (42S22): Unknown column 'Mysql' in 'field list'
+mysql> insert into myclass values(3, 'kate', 'Mysql', 65),(4, 'jimmy', 'Mysql', 58);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from myclass;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     |  NULL |
+|      2 | john  | Analytics |  NULL |
+|      3 | kate  | Mysql     |    65 |
+|      4 | jimmy | Mysql     |    58 |
++--------+-------+-----------+-------+
+4 rows in set (0.03 sec)
+
+mysql> alter table myclass drop column marks integer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'integer' at line 1
+mysql> alter table myclass drop column marks ;
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from myclass
+    ->
+    -> select * from myclass;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from myclass' at line 3
+mysql> select * from myclass;
++--------+-------+-----------+
+| sid_id | sname | course    |
++--------+-------+-----------+
+|      1 | mary  | Mysql     |
+|      2 | john  | Analytics |
+|      3 | kate  | Mysql     |
+|      4 | jimmy | Mysql     |
++--------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> alter table myclass add column marks char(30);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from myclass;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     | NULL  |
+|      2 | john  | Analytics | NULL  |
+|      3 | kate  | Mysql     | NULL  |
+|      4 | jimmy | Mysql     | NULL  |
++--------+-------+-----------+-------+
+4 rows in set (0.03 sec)
+
+mysql> alter table students modify column course varchar(35);
+ERROR 1146 (42S02): Table 'mydata.students' doesn't exist
+mysql> alter table myclass modify column course varchar(35);
+Query OK, 4 rows affected (0.18 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table myclass rename students;
+Query OK, 0 rows affected (1.83 sec)
+
+mysql> update students set course='Analytics' where sid_id= 4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  column course varchar(35);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column course varchar(35)' at line 1
+mysql> select * from students;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     | NULL  |
+|      2 | john  | Analytics | NULL  |
+|      3 | kate  | Mysql     | NULL  |
+|      4 | jimmy | Analytics | NULL  |
++--------+-------+-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update students set marks=47 where sname='jimmy';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | mary  | Mysql     | NULL  |
+|      2 | john  | Analytics | NULL  |
+|      3 | kate  | Mysql     | NULL  |
+|      4 | jimmy | Analytics | 47    |
++--------+-------+-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update students set sname='hary', marks=78 where sid_id=1 ;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++--------+-------+-----------+-------+
+| sid_id | sname | course    | marks |
++--------+-------+-----------+-------+
+|      1 | hary  | Mysql     | 78    |
+|      2 | john  | Analytics | NULL  |
+|      3 | kate  | Mysql     | NULL  |
+|      4 | jimmy | Analytics | 47    |
++--------+-------+-----------+-------+
+4 rows in set (0.03 sec)
+
+mysql>

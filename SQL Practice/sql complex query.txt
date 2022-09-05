@@ -1,0 +1,48 @@
+1. Write a query to fetch all the duplicate records from user table?
+
+select user_id, user_name, email
+from (
+        select *,
+        row number() over(partion by user_name oredr by user_id) as rn
+        from users order by user_id ) as x 
+        where x.rn > 1;
+
+
+
+4. From doctors table , fetch the details of doctors who work in same hospital but in different speciality ?
+
+select *
+from doctors d1 join doctors d2 
+ON d1. id <> d2.id and d1.hospital = d2.hospital and d1.speciality <> d2.speciality ;
+
+select d1.*
+from doctors d1 join doctors d2 
+ON d1. id <> d2.id and d1.hospital = d2.hospital and d1.speciality <> d2.speciality ;
+
+5. From the login_details table, fetched the users who logged in consecuently more than 3 times ? (use lead function) (using lead function we can compare the data of rows )
+    ( is it compulsary that your data is in 1,2,3 row wise or it will execute then also when our data is in 1,3 4,6,7 row wise 
+   select * from login_details;
+
+    select *,
+    case when user_name = lead (user_name) over(order by login_id)
+    and user_name = lead(user_name, 2) over (order by login_id)
+    then user_name
+    else null
+    end as repeated users
+    from login_details ;
+
+    select distinct user_name,
+     from (
+    select *,
+    case when user_name = lead (user_name) over(order by login_id)     ...... james is repeated (so just use distinct clause for user_name )
+    and user_name = lead(user_name, 2) over (order by login_id)
+    then user_name
+    else null
+    end as repeated users
+    from login_details ) as x
+    where x. repeated_users is not null;
+
+7. From the weather table fetch all the records when London had extremely cold (i.e less than 0 ) temperature for 3 consecutive days or more /
+
+select * from weather 
+
